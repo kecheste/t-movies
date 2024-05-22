@@ -1,10 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import SensorsIcon from "@mui/icons-material/Sensors";
+import GroupWorkIcon from "@mui/icons-material/GroupWork";
+import LiveTvIcon from "@mui/icons-material/LiveTv";
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 
-function TypeItem() {
+function TypeItem({ type, onClick }) {
   return (
     <Box
+      onClick={onClick}
       elevation={3}
       sx={{
         elevation: 3,
@@ -12,8 +16,8 @@ function TypeItem() {
         flexDirection: "column",
         alignItems: "start",
         bgcolor: "#1b1c3a",
-        width: 200,
-        height: 260,
+        width: { md: 200, sm: 150, xs: 150 },
+        height: { md: 260, sm: 200, xs: 200 },
         borderRadius: 2,
         border: "1px solid #262b42",
         p: 1,
@@ -32,7 +36,18 @@ function TypeItem() {
           justifyContent: "center",
         }}
       >
-        <SensorsIcon sx={{ color: "#fff", fontSize: 60 }} />
+        {type.type === "Live TV's" && (
+          <SensorsIcon sx={{ fontSize: 70, color: "white" }} />
+        )}
+        {type.type === "Movies" && (
+          <GroupWorkIcon sx={{ fontSize: 70, color: "white" }} />
+        )}
+        {type.type === "TV Shows" && (
+          <LiveTvIcon sx={{ fontSize: 70, color: "white" }} />
+        )}
+        {type.type === "Sports" && (
+          <SportsSoccerIcon sx={{ fontSize: 70, color: "white" }} />
+        )}
       </Box>
       <Box
         sx={{
@@ -43,10 +58,10 @@ function TypeItem() {
         }}
       >
         <Typography variant="h5" sx={{ fontWeight: 500, color: "white" }}>
-          Live TV's
+          {type.type}
         </Typography>
         <Typography sx={{ color: "#7b829e", fontSize: 16, mt: 1 }}>
-          +5000 Channels
+          {type.details}
         </Typography>
       </Box>
     </Box>

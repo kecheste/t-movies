@@ -1,10 +1,18 @@
 import { Box, Link, Typography } from "@mui/material";
 import React from "react";
 
-function Channel({ channel, isSelected, onClick }) {
+function Channel({ channel, isSelected, onClick, innerRef }) {
   return (
     <Box
-      sx={{ display: "flex", alignItems: "center", mb: 5, cursor: "pointer" }}
+      ref={innerRef}
+      sx={{
+        display: "flex",
+        flexDirection: { sm: "column", xs: "column", md: "row", lg: "row" },
+        alignItems: "center",
+        mb: { md: 5, lg: 5, sm: 0, xs: 0 },
+        mr: { md: 0, lg: 0, sm: 1, xs: 1 },
+        cursor: "pointer",
+      }}
       onClick={onClick}
     >
       <Link
@@ -33,10 +41,15 @@ function Channel({ channel, isSelected, onClick }) {
       <Typography
         variant="h6"
         sx={{
-          ml: 2,
+          ml: { md: 2, lg: 2, sm: 0, xs: 0 },
           color: `${isSelected ? "white" : "#a7b3c9"}`,
           fontWeight: isSelected ? 500 : 300,
-          fontSize: isSelected ? 25 : 20,
+          fontSize: {
+            md: isSelected ? 25 : 20,
+            lg: isSelected ? 25 : 20,
+            sm: 10,
+            xs: 10,
+          },
         }}
       >
         {channel.name}

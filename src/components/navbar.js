@@ -3,65 +3,122 @@ import React from "react";
 import CloudIcon from "@mui/icons-material/Cloud";
 import SearchIcon from "@mui/icons-material/Search";
 
-function NavBar() {
+function NavBar({ header }) {
   return (
     <Box
       sx={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        pr: 4,
+        pr: { md: 4, sm: 2, xs: 2 },
       }}
     >
       <Box>
-        <img
-          src="./assets/channels/hbo-logo.png"
-          alt="logo"
-          style={{
-            width: 90,
-            height: 90,
-            objectFit: "contain",
+        <Typography
+          sx={{
+            color: "white",
+            fontSize: 30,
+            display: {
+              lg: "block",
+              sm: "none",
+              xs: "none",
+              md: "block",
+            },
           }}
-        />
+        >
+          {header}
+        </Typography>
+        <Box
+          sx={{
+            display: {
+              md: "none",
+              lg: "none",
+              sm: "block",
+              xs: "block",
+            },
+            ml: 1,
+          }}
+        >
+          <img
+            width={60}
+            height={60}
+            src="./assets/images/logo.png"
+            alt="logo"
+          />
+        </Box>
       </Box>
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
-          width: 400,
+          width: { md: 400, sm: 200 },
           justifyContent: "space-between",
         }}
       >
-        <Typography sx={{ fontWeight: 300, color: "white", fontSize: 18 }}>
+        <Typography
+          sx={{
+            fontWeight: 300,
+            color: "white",
+            fontSize: 18,
+            display: {
+              lg: "block",
+              sm: "none",
+              xs: "none",
+              md: "block",
+            },
+          }}
+        >
           5:45PM
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CloudIcon sx={{ color: "white", fontSize: 35 }} />
-          <Typography sx={{ fontWeight: 300, color: "white", fontSize: 20 }}>
+          <Typography
+            sx={{
+              fontWeight: 300,
+              color: "white",
+              fontSize: 20,
+              mr: {
+                md: 0,
+                sm: 2,
+                xs: 2,
+              },
+            }}
+          >
             10°
           </Typography>
         </Box>
         <SearchIcon
           sx={{
             color: "#a0a4b8",
-            fontSize: 30,
+            fontSize: { md: 30, sm: 25 },
             bgcolor: "#1b1c3a",
             borderRadius: "50%",
-            padding: 1.8,
+            padding: { md: 1.8, sm: 1.5, xs: 1.5 },
           }}
         />
-        <img
-          alt="profile"
-          src="./assets/profile.jpg"
-          style={{
-            borderRadius: "50%",
-            height: 50,
-            width: 50,
-            objectFit: "cover",
-            backgroundPosition: "center;",
-            cursor: "pointer",
+        <Box
+          sx={{
+            display: {
+              sm: "none",
+              xs: "none",
+              md: "block",
+              lg: "block",
+            },
           }}
-        />
+        >
+          <img
+            alt="profile"
+            src="./assets/profile.jpg"
+            style={{
+              borderRadius: "50%",
+              height: 50,
+              width: 50,
+              objectFit: "cover",
+              backgroundPosition: "center",
+              cursor: "pointer",
+            }}
+          />
+        </Box>
       </Box>
     </Box>
   );

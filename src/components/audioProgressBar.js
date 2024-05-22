@@ -48,7 +48,14 @@ const AudioProgressBar = () => {
   }, [isPlaying, duration, currentTime]);
 
   return (
-    <Box sx={{ width: "100%", mt: 3, display: "flex", alignItems: "center" }}>
+    <Box
+      sx={{
+        width: "100%",
+        mt: { md: 3, lg: 3, sm: 0, xs: 0 },
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <Box sx={{ width: 300 }}>
         <Slider
           value={currentTime}
