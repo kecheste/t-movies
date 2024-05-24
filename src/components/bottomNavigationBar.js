@@ -16,7 +16,7 @@ const TabBarButton = styled(BottomNavigationAction)({
   },
 });
 
-function BottomNavigationBar({ selectedTab, setSelectedTab }) {
+function BottomNavigationBar({ selectedTab, setSelectedTab, user }) {
   const [value, setValue] = useState(0);
   return (
     <Paper
@@ -37,7 +37,18 @@ function BottomNavigationBar({ selectedTab, setSelectedTab }) {
           sx={{
             fontSize: 25,
           }}
-          icon={<LiveTvIcon color="white" />}
+          icon={
+            <LiveTvIcon
+              color="white"
+              sx={{
+                borderRadius: "50%",
+                border: "1px solid #2e3252",
+                p: 1.3,
+                bgcolor: "secondary.main",
+                fontSize: 18,
+              }}
+            />
+          }
           showLabel={false}
           onClick={() => setSelectedTab("tv")}
         />
@@ -45,7 +56,18 @@ function BottomNavigationBar({ selectedTab, setSelectedTab }) {
           sx={{
             fontSize: 25,
           }}
-          icon={<StarIcon color="white" />}
+          icon={
+            <StarIcon
+              color="white"
+              sx={{
+                borderRadius: "50%",
+                border: "1px solid #2e3252",
+                p: 1.3,
+                bgcolor: "secondary.main",
+                fontSize: 18,
+              }}
+            />
+          }
           showLabel={false}
           onClick={() => setSelectedTab("favorites")}
         />
@@ -53,7 +75,18 @@ function BottomNavigationBar({ selectedTab, setSelectedTab }) {
           sx={{
             fontSize: 25,
           }}
-          icon={<AccessTimeFilledIcon color="white" />}
+          icon={
+            <AccessTimeFilledIcon
+              color="white"
+              sx={{
+                borderRadius: "50%",
+                border: "1px solid #2e3252",
+                p: 1.3,
+                bgcolor: "secondary.main",
+                fontSize: 18,
+              }}
+            />
+          }
           showLabel={false}
           onClick={() => setSelectedTab("later")}
         />
@@ -62,7 +95,7 @@ function BottomNavigationBar({ selectedTab, setSelectedTab }) {
           icon={
             <img
               alt="profile"
-              src="./assets/profile.jpg"
+              src={user.picture}
               style={{
                 borderRadius: "50%",
                 height: 40,

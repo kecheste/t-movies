@@ -11,8 +11,8 @@ import { IconButton, InputAdornment } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person2Outlined";
 import LockIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
 
 const defaultTheme = createTheme();
 
@@ -25,7 +25,7 @@ export default function AdminLogin() {
     event.preventDefault();
     if (phone !== "" || password !== "") {
       try {
-        const response = await axios.post("http://localhost:3002/admin/login", {
+        const response = await api.post("/admin/login", {
           phone,
           password,
         });

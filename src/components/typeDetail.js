@@ -5,7 +5,7 @@ import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-function TypeDetail({ selected }) {
+function TypeDetail({ selected, user }) {
   const categories = [
     {
       id: 1,
@@ -39,7 +39,7 @@ function TypeDetail({ selected }) {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <Box sx={{ my: 2, pt: 1 }}>
-        <NavBar header={selected} />
+        <NavBar header={selected} user={user} />
       </Box>
       <Box
         sx={{

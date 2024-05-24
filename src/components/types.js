@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import TypeItem from "./typeItem";
 
-function Types({ handleTypeClick, handleSelectedType }) {
+function Types({ handleTypeClick, handleSelectedType, user }) {
   const types = [
     { type: "Live TV's", details: "+5000 Channels" },
     { type: "Movies", details: "+500 Movies" },
@@ -13,9 +13,10 @@ function Types({ handleTypeClick, handleSelectedType }) {
     <Box sx={{ display: "flex" }}>
       {types.map((type, index) => (
         <TypeItem
+          user={user}
           onClick={() => {
             handleSelectedType(type.type);
-            handleTypeClick();
+            handleTypeClick(true);
           }}
           key={index}
           type={type}

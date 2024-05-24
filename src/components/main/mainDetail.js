@@ -7,6 +7,7 @@ import Channel from "../channel";
 import Types from "../types";
 
 function MainDetail({
+  user,
   channels,
   typeClicked,
   selectedType,
@@ -24,7 +25,7 @@ function MainDetail({
       sx={{ height: { md: "80vh", sm: "auto" } }}
     >
       {typeClicked ? (
-        <TypeDetail selected={selectedType} />
+        <TypeDetail selected={selectedType} user={user} />
       ) : (
         <Box
           sx={{
@@ -33,9 +34,12 @@ function MainDetail({
           }}
         >
           <NavBar
+            typeClicked={typeClicked}
+            handleTypeClick={handleTypeClick}
+            user={user}
             header={
               <img
-                src={channels[selectedChannelIndex].logo}
+                src={channels[parseInt(selectedChannelIndex)].logo}
                 alt="logo"
                 style={{
                   width: 90,
@@ -59,7 +63,7 @@ function MainDetail({
             }}
           >
             <img
-              src={channels[selectedChannelIndex].logo}
+              src={channels[parseInt(selectedChannelIndex)].logo}
               alt="logo"
               style={{
                 width: 90,
@@ -115,6 +119,7 @@ function MainDetail({
             }}
           >
             <Types
+              user={user}
               handleTypeClick={handleTypeClick}
               handleSelectedType={handleSelectedType}
             />

@@ -26,7 +26,7 @@ function ChannelInfo({ openAddChannel, channels }) {
         };
       }),
     [channels]
-  ); // Use useMemo to memoize the data array
+  );
 
   const columns = useMemo(
     () => [

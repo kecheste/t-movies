@@ -2,8 +2,9 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import CloudIcon from "@mui/icons-material/Cloud";
 import SearchIcon from "@mui/icons-material/Search";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
-function NavBar({ header }) {
+function NavBar({ header, user, typeClicked, handleTypeClick }) {
   return (
     <Box
       sx={{
@@ -39,12 +40,29 @@ function NavBar({ header }) {
             ml: 1,
           }}
         >
-          <img
-            width={60}
-            height={60}
-            src="./assets/images/logo.png"
-            alt="logo"
-          />
+          {typeClicked ? (
+            <ArrowBackIosNewIcon
+              onClick={handleTypeClick(false)}
+              sx={{
+                color: "white",
+                fontSize: 40,
+                padding: 3,
+                cursor: "pointer",
+                bgcolor: "primary.main",
+                borderRadius: "50%",
+                "&:hover": {
+                  bgcolor: "secondary.main",
+                },
+              }}
+            />
+          ) : (
+            <img
+              width={60}
+              height={60}
+              src="./assets/images/logo.png"
+              alt="logo"
+            />
+          )}
         </Box>
       </Box>
       <Box
@@ -108,7 +126,7 @@ function NavBar({ header }) {
         >
           <img
             alt="profile"
-            src="./assets/profile.jpg"
+            src={user.picture}
             style={{
               borderRadius: "50%",
               height: 50,

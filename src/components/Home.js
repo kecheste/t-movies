@@ -4,30 +4,34 @@ import BottomNavigationBar from "./bottomNavigationBar";
 import SideNavigationBar from "./main/sidebar";
 import ChannelsSlider from "./main/channelsSlider";
 import MainDetail from "./main/mainDetail";
+import api from "../api";
 
-function Home() {
-  const channels = [
-    { name: "FOX TV", logo: "./assets/channels/fox-logo.png" },
-    { name: "ABC TV", logo: "./assets/channels/abc-logo.png" },
-    { name: "AMC TV", logo: "./assets/channels/amc-logo.png" },
-    { name: "NBC TV", logo: "./assets/channels/nbc-logo.png" },
-    { name: "HBO", logo: "./assets/channels/hbo-logo.png" },
-    { name: "City TV", logo: "./assets/channels/nbc-logo.png" },
-    { name: "ESPN", logo: "./assets/channels/espn-logo.png" },
-    { name: "Disney", logo: "./assets/channels/disney-logo.png" },
-    { name: "CNN", logo: "./assets/channels/cnn-logo.png" },
-  ];
+function Home({ user }) {
+  // const unUpdatedchannels = [
+  //   { name: "FOX TV", logo: "./assets/channels/fox-logo.png" },
+  //   { name: "ABC TV", logo: "./assets/channels/abc-logo.png" },
+  //   { name: "AMC TV", logo: "./assets/channels/amc-logo.png" },
+  //   { name: "NBC TV", logo: "./assets/channels/nbc-logo.png" },
+  //   { name: "HBO", logo: "./assets/channels/hbo-logo.png" },
+  //   { name: "City TV", logo: "./assets/channels/nbc-logo.png" },
+  //   { name: "ESPN", logo: "./assets/channels/espn-logo.png" },
+  //   { name: "Disney", logo: "./assets/channels/disney-logo.png" },
+  //   { name: "CNN", logo: "./assets/channels/cnn-logo.png" },
+  // ];
+
+  const [channels, setChannels] = useState([]);
 
   const [selectedTab, setSelectedTab] = useState("tv");
   const containerRef = useRef(null);
-  const observerRef = useRef(null);
-  const [selectedChannelIndex, setSelectedChannelIndex] = useState(
-    Math.floor(channels.length / 2)
-  );
+  // const observerRef = useRef(null);
+  // const [selectedChannelIndex, setSelectedChannelIndex] = useState(
+  //   Math.floor(channels.length / 2)
+  // );
+  const [selectedChannelIndex, setSelectedChannelIndex] = useState(0);
   const [typeClicked, setTypeClicked] = useState(false);
   const [selectedType, setSelectedType] = useState("Live TV's");
 
-  const handleTypeClick = (type) => {
+  const handleTypeClick = () => {
     setTypeClicked(true);
   };
 
@@ -35,40 +39,40 @@ function Home() {
     setSelectedType(type);
   };
 
-  const handleIntersection = useCallback((entries) => {
-    entries.forEach((entry) => {
-      const { top, bottom } = entry.boundingClientRect;
-      var containerHeight = null;
-      if (containerRef.current) {
-        containerHeight = containerRef.current.clientHeight;
-      }
-      const isInVerticalCenter =
-        top >= containerHeight / 4 && bottom <= (3 * containerHeight) / 4;
+  // const handleIntersection = useCallback((entries) => {
+  //   entries.forEach((entry) => {
+  //     const { top, bottom } = entry.boundingClientRect;
+  //     var containerHeight = null;
+  //     if (containerRef.current) {
+  //       containerHeight = containerRef.current.clientHeight;
+  //     }
+  //     const isInVerticalCenter =
+  //       top >= containerHeight / 4 && bottom <= (3 * containerHeight) / 4;
 
-      if (isInVerticalCenter && entry.isIntersecting) {
-        const index = parseInt(entry.target.getAttribute("data-index"), 10);
-        setSelectedChannelIndex(index);
-      }
-    });
-  }, []);
+  //     if (isInVerticalCenter && entry.isIntersecting) {
+  //       const index = parseInt(entry.target.getAttribute("data-index"), 10);
+  //       setSelectedChannelIndex(index);
+  //     }
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    const options = {
-      root: containerRef.current,
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
+  // useEffect(() => {
+  //   const options = {
+  //     root: containerRef.current,
+  //     rootMargin: "0px",
+  //     threshold: 0.5,
+  //   };
 
-    observerRef.current = new IntersectionObserver(handleIntersection, options);
+  //   observerRef.current = new IntersectionObserver(handleIntersection, options);
 
-    const container = containerRef.current;
-    const items = container.querySelectorAll("[data-index]");
-    items.forEach((item) => observerRef.current.observe(item));
+  //   const container = containerRef.current;
+  //   const items = container.querySelectorAll("[data-index]");
+  //   items.forEach((item) => observerRef.current.observe(item));
 
-    return () => {
-      items.forEach((item) => observerRef.current.unobserve(item));
-    };
-  }, [handleIntersection]);
+  //   return () => {
+  //     items.forEach((item) => observerRef.current.unobserve(item));
+  //   };
+  // }, [handleIntersection]);
 
   const handleClick = (index) => {
     setSelectedChannelIndex(index);
@@ -78,6 +82,18 @@ function Home() {
       index * itemHeight - container.clientHeight / 2 + itemHeight / 2;
     container.scrollTop = targetScrollTop;
   };
+
+  useEffect(() => {
+    const fetchChannels = async () => {
+      try {
+        const response = await api.get("/channel");
+        setChannels(response.data);
+      } catch (error) {
+        console.error("Error fetching channels:", error);
+      }
+    };
+    fetchChannels();
+  }, []);
 
   return (
     <div className="App">
@@ -112,6 +128,7 @@ function Home() {
                 handleClick={handleClick}
               />
               <MainDetail
+                user={user}
                 channels={channels}
                 typeClicked={typeClicked}
                 selectedType={selectedType}
@@ -131,6 +148,7 @@ function Home() {
           )}
         </Grid>
         <BottomNavigationBar
+          user={user}
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
         />

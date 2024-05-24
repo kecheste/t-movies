@@ -25,13 +25,17 @@ import {
 } from "recharts";
 import CircleIcon from "@mui/icons-material/Circle";
 
-function DashboardInfo() {
-  const data = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 },
+function DashboardInfo({ channels, programs, users, data, categories }) {
+  const datas = [
+    categories.map((category) => {
+      return {
+        name: category.name,
+        value: programs.filter((program) => program.categoryId === category.id)
+          .length,
+      };
+    }),
   ];
+
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   const lineData = [
@@ -241,7 +245,7 @@ function DashboardInfo() {
             variant="h5"
             sx={{ fontSize: 30, mt: 2, fontWeight: 600 }}
           >
-            37
+            {data.userCount}
           </Typography>
           <Typography variant="h5" sx={{ fontSize: 25, mt: 1 }}>
             +12% This Month
@@ -282,7 +286,7 @@ function DashboardInfo() {
             variant="h5"
             sx={{ fontSize: 30, mt: 2, fontWeight: 600 }}
           >
-            37
+            {data.programCount}
           </Typography>
           <Typography variant="h5" sx={{ fontSize: 25, mt: 1 }}>
             +12% This Month
@@ -323,7 +327,7 @@ function DashboardInfo() {
             variant="h5"
             sx={{ fontSize: 30, mt: 2, fontWeight: 600 }}
           >
-            37
+            {data.channelCount}
           </Typography>
           <Typography variant="h5" sx={{ fontSize: 25, mt: 1 }}>
             +12% This Month
@@ -361,14 +365,14 @@ function DashboardInfo() {
         </Typography>
         <PieChart width={400} height={400}>
           <Pie
-            data={data}
+            data={datas}
             innerRadius={80}
             outerRadius={110}
             fill="#8884d8"
             paddingAngle={10}
             dataKey="value"
           >
-            {data.map((entry, index) => (
+            {datas.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
@@ -377,7 +381,7 @@ function DashboardInfo() {
           </Pie>
         </PieChart>
         <Box sx={{ display: "flex", flexDirection: "column", mt: 10 }}>
-          {data.map((entry, index) => (
+          {datas.map((entry, index) => (
             <Box
               key={`cell-${index}`}
               sx={{ display: "flex", alignItems: "center", mb: 1 }}
