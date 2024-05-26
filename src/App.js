@@ -13,19 +13,19 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api
-      .get("/auth/login/success")
-      .then((response) => {
+    const fetchUser = async () => {
+      try {
+        const response = await api.get("/auth/login/success");
         if (response.data.user) {
           setUser(response.data.user._json);
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.log("Error fetching user!");
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+    fetchUser();
   }, []);
 
   if (loading) {
