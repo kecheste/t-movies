@@ -50,10 +50,25 @@ function App() {
     );
   }
 
+  if (!user) {
+    <Link to="/login">Login</Link>;
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home user={user} />} />
+        <Route
+          path="/"
+          element={
+            user ? (
+              <div className="App">
+                <Home user={user} />
+              </div>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/dashboard" element={<Dashboard />} />
