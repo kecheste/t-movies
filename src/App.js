@@ -21,7 +21,7 @@ function App() {
         }
       })
       .catch((error) => {
-        console.log("Error fetching user: ", error);
+        console.log("Error fetching user!");
       })
       .finally(() => {
         setLoading(false);
