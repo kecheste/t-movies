@@ -84,3 +84,8 @@ t-movies-backend
 `POSTGRES_PASSWORD`=`from vercel postgres database`
 
 `POSTGRES_DATABASE`=`from vercel postgres database`
+
+## Author
+
+- [Github](https://www.github.com/kecheste)
+- [LinkedIn](https://www.linkedin.com/in/abenezer-tesfaye/)
