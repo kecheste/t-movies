@@ -3,7 +3,7 @@ import "./App.css";
 import Dashboard from "./admin/dashboard";
 import AdminLogin from "./admin/login";
 import Home from "./components/Home";
-import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/login";
 import api from "./api";
 import { Box, CircularProgress } from "@mui/material";
@@ -50,25 +50,10 @@ function App() {
     );
   }
 
-  if (!user) {
-    <Link to="/login">Login</Link>;
-  }
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            user ? (
-              <div className="App">
-                <Home user={user} />
-              </div>
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
+        <Route path="/" element={<Home user={user} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/dashboard" element={<Dashboard />} />

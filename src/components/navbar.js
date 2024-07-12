@@ -126,7 +126,7 @@ function NavBar({ header, user, typeClicked, handleTypeClick }) {
         >
           <img
             alt="profile"
-            src={user.picture}
+            src={user ? user.picture : "/assets/profile.jpg"}
             style={{
               borderRadius: "50%",
               height: 50,

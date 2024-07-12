@@ -46,12 +46,14 @@ function SideNavigationBar({
               }}
             />
           ) : (
-            <img
-              width={100}
-              height={100}
-              src="./assets/images/logo.png"
-              alt="logo"
-            />
+            <a href="/">
+              <img
+                width={100}
+                height={100}
+                src="./assets/images/logo.png"
+                alt="logo"
+              />
+            </a>
           )}
         </Box>
         <Box

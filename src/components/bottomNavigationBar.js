@@ -95,7 +95,7 @@ function BottomNavigationBar({ selectedTab, setSelectedTab, user }) {
           icon={
             <img
               alt="profile"
-              src={user.picture}
+              src={user ? user.picture : "/assets/profile.jpg"}
               style={{
                 borderRadius: "50%",
                 height: 40,
