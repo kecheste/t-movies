@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+![Logo](https://github.com/kecheste/t-movies/blob/main/public/logo.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# T-Movies
 
-## Available Scripts
+T-Movies is a movie streaming site for streaming movies and TV shows.
+[Preview](https://t-movies-jet.vercel.app)
 
-In the project directory, you can run:
+## Getting started
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is the frontend of the project. After clonning this repository to your local computer install it using npm
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Follow the following instructions:
 
-### `npm test`
+```bash
+  mkdir t-movies-app
+  cd t-movies-app
+  git clone https://github.com/kecheste/t-movies
+  git clone https://github.com/kecheste/t-movies-backend
+  cd t-movies
+  npm install
+  cd ../
+  cd t-movies-backend
+  npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Following these steps will setup the project in your local computer for development.
 
-### `npm run build`
+```bash
+  npm start
+  *
+  yarn start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the backend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+  nodemon start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Open http://localhost:3000 with your browser to see the frontend.
 
-### `npm run eject`
+## Environment Variables
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To run this project, you will need to add the following environment variables to your .env file
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+There will be two .env files, one inside t-movies(frontend) and the other inside t-movies-backend folders
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+t-movies(frontend)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+`REACT_APP_BACKEND_URL`=`http://localhost:3002`
 
-## Learn More
+t-movies-backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`ADMIN_USER`=`enter_username`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`ADMIN_PASSWORD`=`enter_password`
 
-### Code Splitting
+`JWT_SECRET`=`very-secure-code`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+`DATABASE_URL`=`your postgres database uri`
 
-### Analyzing the Bundle Size
+`GOOGLE_CLIENT_ID`=`google client id from google cloud console`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+`GOOGLE_CLIENT_SECRET`=`google client secret from google cloud console`
 
-### Making a Progressive Web App
+`CALLBACK_URL`=`callback url from google cloud console`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+`FRONT_URL`=`http://localhost:3000`
 
-### Advanced Configuration
+`POSTGRES_URL`=`from vercel postgres database`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+`POSTGRES_PRISMA_URL`=`from vercel postgres database`
 
-### Deployment
+`POSTGRES_URL_NO_SSL`=`from vercel postgres database`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+`POSTGRES_URL_NON_POOLING`=`from vercel postgres database`
 
-### `npm run build` fails to minify
+`POSTGRES_USER`=`from vercel postgres database`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+`POSTGRES_HOST`=`from vercel postgres database`
+
+`POSTGRES_PASSWORD`=`from vercel postgres database`
+
+`POSTGRES_DATABASE`=`from vercel postgres database`
